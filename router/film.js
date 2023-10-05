@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const pool = require('../queries')
 
-router.get('/', (req, res)=>{
+// Menampilkan data seluruh list film
+router.get('/listFilm', (req, res)=>{
     const sql = 'SELECT * FROM film'
     pool.query(sql, (error, result)=>{
         if(error) throw error
@@ -10,6 +11,7 @@ router.get('/', (req, res)=>{
     })
 })
 
+// Menampilkan data film tertentu berdasarkan id
 router.get('/listFilm/:id', (req, res)=>{
     const film_id = req.params.id
     const sql = 'SELECT * FROM film WHERE film_id=$1'
